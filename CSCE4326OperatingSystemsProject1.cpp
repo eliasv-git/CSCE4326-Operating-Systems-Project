@@ -4,13 +4,13 @@
 
 using namespace std;
 
-void simpleDelay(int milliseconds) {
+void simpleDelay(int milliseconds) { //Function that creates a Delay
     clock_t start_time = clock();
     while (clock() < start_time + milliseconds * (CLOCKS_PER_SEC / 1000)) {
     }
 }
 
-void simulateBootUp() {
+void simulateBootUp() { //Function to create the loading part
     for (int i = 0; i < 2; i++) {
         for (int j = 1; j <= 3; j++) {
             cout << "\rLoading";
@@ -18,7 +18,7 @@ void simulateBootUp() {
                 cout << ".";
                 simpleDelay(500);
             }
-            cout.flush();
+            cout.flush();//Resets the dots
         }
         cout << "\rLoading   ";
         simpleDelay(500);
@@ -26,7 +26,7 @@ void simulateBootUp() {
     cout << endl;
 }
 
-void userAuthentication() {
+void userAuthentication() { //Function that asks for the user sign in or sign up
     string username, password, action;
 
     cout << "\nWelcome to the system!" << endl;
@@ -46,7 +46,7 @@ void userAuthentication() {
     cout << "\n" << (action == "signup" ? "Sign Up" : "Sign In") << " successful!" << endl;
 }
 
-void loadOperatingSystem() {
+void loadOperatingSystem() { //Function that simulates wafter signing in to load the OS
     cout << "\nLoading Operating System";
     for (int i = 0; i < 3; i++) {
         cout << ".";
