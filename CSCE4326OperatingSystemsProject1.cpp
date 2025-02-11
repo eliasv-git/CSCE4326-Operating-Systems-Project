@@ -46,7 +46,7 @@ void userAuthentication() { //Function that asks for the user sign in or sign up
     cout << "\n" << (action == "signup" ? "Sign Up" : "Sign In") << " successful!" << endl;
 }
 
-void loadOperatingSystem() { //Function that simulates wafter signing in to load the OS
+void loadOperatingSystem() { //Function that simulates after signing in to load the OS
     cout << "\nLoading Operating System";
     for (int i = 0; i < 3; i++) {
         cout << ".";
@@ -56,9 +56,9 @@ void loadOperatingSystem() { //Function that simulates wafter signing in to load
 }
 
 int main() {
-    simulateBootUp();
-    userAuthentication();
-    loadOperatingSystem();
+    simulateBootUp(); //Function call for the Loading part 
+    userAuthentication(); //Function call that asks the user to sign in/up
+    loadOperatingSystem(); // Function call to load the OS
     cout << "\nWelcome to your system!" << endl;
     cout << "The operating system is now ready for use." << endl;
 
