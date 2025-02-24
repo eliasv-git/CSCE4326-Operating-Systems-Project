@@ -2,47 +2,19 @@
 #include <string>
 #include <ctime>
 #include "auth.h"  // Include the header file for the authentication function
+#include "Process.h"  // Include the Process class to handle processes
 
 using namespace std;
 
-void simpleDelay(int milliseconds) { // Function that creates a delay
-    clock_t start_time = clock();
-    while (clock() < start_time + milliseconds * (CLOCKS_PER_SEC / 1000)) {
-    }
-}
-
-void simulateBootUp() { // Function to create the loading part
-    for (int i = 0; i < 2; i++) {
-        for (int j = 1; j <= 3; j++) {
-            cout << "\rLoading";
-            for (int k = 0; k < j; k++) {
-                cout << ".";
-                simpleDelay(500);
-            }
-            cout.flush(); // Resets the dots
-        }
-        cout << "\rLoading   ";
-        simpleDelay(500);
-    }
-    cout << endl;
-}
-
-void loadOperatingSystem() { // Function that simulates after signing in to load the OS
-    cout << "\nLoading Operating System";
-    for (int i = 0; i < 3; i++) {
-        cout << ".";
-        simpleDelay(500);
-    }
-    cout << endl;
-}
-
 int main() {
-    simulateBootUp(); // Function call for the Loading part
+    // Simulate Boot-Up (Loading Screen)
+    Process systemProcess(1, time(0), 1000, 1, 500, false);  // Example process
+    systemProcess.simulateBootUp();  // Show the loading part with dots
 
-    if (authenticateUser()) { // Call the authentication function
-        loadOperatingSystem(); // Function call to load the OS
-        cout << "\nWelcome to your system!" << endl;
-        cout << "The operating system is now ready for use." << endl;
+    // Authenticate User
+    if (authenticateUser()) {  // Call the authentication function
+        systemProcess.loadOperatingSystem();  // Simulate OS loading
+        systemProcess.selectApp();  // Ask the user to select an application or power off
     } else {
         cout << "Authentication failed. Exiting the system." << endl;
     }
