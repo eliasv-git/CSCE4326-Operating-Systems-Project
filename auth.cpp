@@ -15,6 +15,7 @@ bool authenticateUser() {
     cout << "\nWelcome to the system!" << endl;
     cout << "Please Sign In to continue." << endl;
 
+    while(true){
     // Prompt user for input
     cout << "Enter your username: ";
     cin >> username;
@@ -25,8 +26,7 @@ bool authenticateUser() {
     if (username == correctUsername && password == correctPassword) {
         cout << "Authentication successful!" << endl;
         return true;  // Authentication success
-    } else {
-        cout << "Invalid username or password!" << endl;
-        return false; // Authentication failure
-    }
+    }; 
+        cout << "Invalid username or password!" << endl; //Authentication Failed
+    };
 }
