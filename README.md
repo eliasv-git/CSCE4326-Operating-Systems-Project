@@ -23,8 +23,8 @@
      - Password: password123 
    - If the username/password is incorrect program returns user to login
 # Process Select
- - Program simulates main menu
- - Requires user to log in using correct name and password
-   - User will be given prompt to select a program
+ - Program simulates main menu (Porgram state is running)
+ - Requires user to log in using correct name and password 
+   - User will be given prompt to select a program (Program is moved to a waiting state)
      - Will not open or run program at this time  
-   - Will loop until Shutdown is selected 
+   - Will loop until Shutdown is selected (When shutdown is selected the state of the program is terminated)
