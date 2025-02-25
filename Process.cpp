@@ -42,7 +42,7 @@ void Process::loadOperatingSystem() {
 // Method to allow the user to select an application
 void Process::selectApp() {
     int choice;
-
+    while (true){
     cout << "\nSelect an application to use:" << endl;
     cout << "1. Notepad" << endl;
     cout << "2. VSCode" << endl;
@@ -67,9 +67,10 @@ void Process::selectApp() {
             break;
         case 5:
             cout << "Shutting down the OS..." << endl;
-            break;
+            return;
         default:
             cout << "Invalid choice!" << endl;
             break;
     }
+    };
 }
