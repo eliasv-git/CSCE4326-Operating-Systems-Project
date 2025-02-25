@@ -4,7 +4,9 @@
 - [Project Overview](#project-overview)  
 - [Instructions](#instructions)  
 - [User Login](#user-login)  
-- [Process Select](#process-select)   
+- [Process Select](#process-select)
+- [Test Case Example](#test-case-example)
+- [Process Example](#process-example)  
 
 # Members
   - Elias Villarreal
@@ -23,11 +25,24 @@
      - Password: password123 
    - If the username/password is incorrect program returns user to login
 # Process Select
- - Program simulates main menu (Porgram state is running)
+ - Program simulates main menu (Program state is running)
  - Requires user to log in using correct name and password 
    - User will be given prompt to select a program (Program is moved to a waiting state)
      - Will not open or run program at this time  
    - Will loop until Shutdown is selected (When shutdown is selected the state of the program is terminated)
-
+# Test Case Example
+ - Before the program runs, the program is prepared to be execute (New State)
+ - Programs starts running loading the operating system (Running State)
+ - Programs waits for user authentification (Waiting State)
+   - User inputs Username: admin
+   - User unputs Password: password123
+ - Program validates the username and password (Ready State)
+   - Program loads operating sysetm
+ - Prompts the user to select a program (Waiting State)
+   - User selects Notepad
+   - System outputs selected program (Running State)
+ - Prompts the user to select another program (Waiting State)
+   - User chooses Shutdown option 
+   - Program ends (Terminated State)
   ## Process Example
   Download [Recording 2025-02-24 221634.zip](https://github.com/eliasv-git/CSCE4326-Operating-Systems-Project/blob/main/Recording%202025-02-24%20221634.zip)
