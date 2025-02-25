@@ -28,3 +28,6 @@
    - User will be given prompt to select a program (Program is moved to a waiting state)
      - Will not open or run program at this time  
    - Will loop until Shutdown is selected (When shutdown is selected the state of the program is terminated)
+
+  ## Process Example
+  [watchdemo](Recording 2025-02-24 221634.zip)
