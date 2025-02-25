@@ -15,4 +15,4 @@
    - Hardcoded username and password
      - Username: admin
      - Password: password123 
-   - If the username/password is incorrect program ends
+   - If the username/password is incorrect program returns user to login
