@@ -6,7 +6,8 @@
 - [User Login](#user-login)  
 - [Process Select](#process-select)
 - [Test Case Example](#test-case-example)
-- [Process Example](#process-example)  
+- [Process Example](#process-example)
+- [Project3 Process Scheduling Algorithms](#process-scheduling)
 
 # Members
   - Elias Villarreal
@@ -46,3 +47,17 @@
    - Program ends (Terminated State)
   ## Process Example
   Download [Recording 2025-02-24 221634.zip](https://github.com/eliasv-git/CSCE4326-Operating-Systems-Project/blob/main/Recording%202025-02-24%20221634.zip)
+
+  # Process Scheduling
+  -Located under Part-3 Scheduling File
+  -Process Scheduling Algorithms
+   -FCFS (First-Come-First-Serve)
+    -Non-Preemtive scheduling algorithm where process that arrives first is executed first
+   -SJF (Shortest Job First)
+    -Non-Preemtive scheduling where process with shortest CPU time is executed first
+  -Displays
+   -Completion Time
+   -Waiting Time
+   -Turnaround Time
+ -Simulator
+  - Select Process to simulate
