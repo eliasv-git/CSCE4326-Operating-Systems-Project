@@ -7,7 +7,7 @@
 - [Process Select](#process-select)
 - [Test Case Example](#test-case-example)
 - [Process Example](#process-example)
-- [Part 3 Process Scheduling Algorithms](#process-scheduling)
+- [Part 3: Process Scheduling Algorithms](#process-scheduling)
 
 # Members
   - Elias Villarreal
@@ -58,9 +58,9 @@
       - Preemtive Scheduling where the process with the shortest remaining CPU burst time is executed first, and a new process with a
         shorter remaining time can preempt the currently running process.
   - Displays
-      - Completion Time
-      - Average Waiting Time
-      - Average Turnaround Time
+      - Completion time
+      - Average waiting time
+      - Average turnaround time
 - Simulator
     - Sign in
       - Username: admin
@@ -70,4 +70,4 @@
       - Input arrival time of each process
       - Input burst time of each process
     - Select Process Scheduling Algorithm
-    - Simulates scheduling algorithm
+    - Simulates Scheduling Algorithm
