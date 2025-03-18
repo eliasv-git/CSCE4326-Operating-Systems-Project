@@ -7,7 +7,7 @@
 - [Process Select](#process-select)
 - [Test Case Example](#test-case-example)
 - [Process Example](#process-example)
-- [Project3 Process Scheduling Algorithms](#process-scheduling)
+- [Part3 Process Scheduling Algorithms](#process-scheduling)
 
 # Members
   - Elias Villarreal
@@ -54,10 +54,20 @@
     - FCFS (First-Come-First-Serve)
       - Non-Preemtive scheduling algorithm where process that arrives first is executed first
     - SJF (Shortest Job First)
-      - Non-Preemtive scheduling where process with shortest CPU time is executed first
+      - Non-Preemtive scheduling where process with shortest CPU burst time is executed first
+      - Preemtive Scheduling where the process with the shortest remaining CPU burst time is executed first, and a new process with a
+        shorter remaining time can preempt the currently running process.
   - Displays
       - Completion Time
-      - Waiting Time
-      - Turnaround Time
+      - Average Waiting Time
+      - Average Turnaround Time
 - Simulator
+    - Sign in
+      - Username: admin
+      - Password: password123
     - Select Process to simulate
+      - Input the number of process to simulate
+      - Input arrival time of each process
+      - Input burst time of each process
+    - Select Process Scheduling Algorithm
+    - Simulates algorithm
