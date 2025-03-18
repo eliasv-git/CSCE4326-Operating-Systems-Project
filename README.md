@@ -51,13 +51,13 @@
   # Process Scheduling
   - Located under Part-3 Scheduling File
   - Process Scheduling Algorithms
-   - FCFS (First-Come-First-Serve)
-    - Non-Preemtive scheduling algorithm where process that arrives first is executed first
-   - SJF (Shortest Job First)
-    - Non-Preemtive scheduling where process with shortest CPU time is executed first
+    - FCFS (First-Come-First-Serve)
+      - Non-Preemtive scheduling algorithm where process that arrives first is executed first
+    - SJF (Shortest Job First)
+      - Non-Preemtive scheduling where process with shortest CPU time is executed first
   - Displays
-   - Completion Time
-   - Waiting Time
-   - Turnaround Time
- - Simulator
-  - Select Process to simulate
+      - Completion Time
+      - Waiting Time
+      - Turnaround Time
+- Simulator
+    - Select Process to simulate
