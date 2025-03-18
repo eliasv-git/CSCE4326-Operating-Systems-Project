@@ -7,7 +7,7 @@
 - [Process Select](#process-select)
 - [Test Case Example](#test-case-example)
 - [Process Example](#process-example)
-- [Part3 Process Scheduling Algorithms](#process-scheduling)
+- [Part 3 Process Scheduling Algorithms](#process-scheduling)
 
 # Members
   - Elias Villarreal
@@ -70,4 +70,4 @@
       - Input arrival time of each process
       - Input burst time of each process
     - Select Process Scheduling Algorithm
-    - Simulates algorithm
+    - Simulates scheduling algorithm
