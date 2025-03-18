@@ -1,0 +1,107 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+struct Process {
+    int pid;         // Process ID
+    int arrivalTime; // Arrival Time
+    int burstTime;   // Burst Time (CPU time)
+    int waitingTime; // Waiting Time
+    int turnaroundTime; // Turnaround Time
+    int completionTime; // Completion Time
+};
+
+bool compareByArrival(const Process& a, const Process& b) {
+    return a.arrivalTime < b.arrivalTime; // Sort by arrival time
+}
+
+bool compareByBurstTime(const Process& a, const Process& b) {
+    return a.burstTime < b.burstTime; // Sort by burst time
+}
+
+// FCFS (First-Come, First-Served) - Non-preemptive
+void FCFS(vector<Process>& processes) {
+    int currentTime = 0;
+
+    for (auto& p : processes) {
+        if (currentTime < p.arrivalTime)
+            currentTime = p.arrivalTime; // Wait for the process to arrive
+        p.completionTime = currentTime + p.burstTime;
+        p.turnaroundTime = p.completionTime - p.arrivalTime;
+        p.waitingTime = p.turnaroundTime - p.burstTime;
+        currentTime = p.completionTime;
+    }
+}
+
+// SJF (Shortest Job First) - Non-preemptive
+void SJF(vector<Process>& processes) {
+    int currentTime = 0;
+    vector<Process> readyQueue;
+    size_t i = 0;
+
+    while (i < processes.size() || !readyQueue.empty()) {
+        // Add all processes that have arrived
+        while (i < processes.size() && processes[i].arrivalTime <= currentTime) {
+            readyQueue.push_back(processes[i]);
+            i++;
+        }
+
+        if (!readyQueue.empty()) {
+            // Sort ready queue by burst time
+            sort(readyQueue.begin(), readyQueue.end(), compareByBurstTime);
+            Process p = readyQueue.front();
+            readyQueue.erase(readyQueue.begin());
+            
+            currentTime += p.burstTime;
+            p.completionTime = currentTime;
+            p.turnaroundTime = p.completionTime - p.arrivalTime;
+            p.waitingTime = p.turnaroundTime - p.burstTime;
+            cout << "Process " << p.pid << " - Completion Time: " << p.completionTime 
+                 << ", Waiting Time: " << p.waitingTime << ", Turnaround Time: " << p.turnaroundTime << endl;
+        } else {
+            // If no processes are ready, increment time
+            currentTime++;
+        }
+    }
+}
+
+// Function to calculate average waiting time and turnaround time
+void calculateAverages(const vector<Process>& processes) {
+    int totalWT = 0, totalTAT = 0;
+    for (const auto& p : processes) {
+        totalWT += p.waitingTime;
+        totalTAT += p.turnaroundTime;
+    }
+    cout << "Average Waiting Time: " << (double)totalWT / processes.size() << endl;
+    cout << "Average Turnaround Time: " << (double)totalTAT / processes.size() << endl;
+}
+
+int main() {
+    vector<Process> processes = {
+        {1, 0, 6, 0, 0, 0},
+        {2, 1, 8, 0, 0, 0},
+        {3, 2, 7, 0, 0, 0},
+        {4, 3, 3, 0, 0, 0}
+    };
+
+    // Sort processes by arrival time
+    sort(processes.begin(), processes.end(), compareByArrival);
+
+    // Run FCFS
+    FCFS(processes);
+    calculateAverages(processes);
+
+    // Reset processes for SJF calculation
+    for (auto& p : processes) {
+        p.waitingTime = 0;
+        p.turnaroundTime = 0;
+        p.completionTime = 0;
+    }
+
+    // Run SJF
+    SJF(processes);
+    calculateAverages(processes);
+
+    return 0;
