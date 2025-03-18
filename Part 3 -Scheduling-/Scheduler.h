@@ -5,11 +5,13 @@
 #include <vector>
 #include <algorithm>
 #include <iomanip>
-#include <climits>  // For INT_MAX
+#include <climits>
+
+using namespace std;
 
 class Scheduler {
 private:
-    std::vector<Process> processes;
+    vector<Process> processes;
     double avgWaitingTime;
     double avgTurnaroundTime;
     
@@ -24,14 +26,14 @@ public:
         processes.push_back(process);
     }
     
-    void addProcesses(const std::vector<Process>& newProcesses) {
+    void addProcesses(const vector<Process>& newProcesses) {
         processes.insert(processes.end(), newProcesses.begin(), newProcesses.end());
     }
     
     // Run FCFS scheduling
     void runFCFS() {
         // Sort processes by arrival time
-        std::sort(processes.begin(), processes.end(), 
+        sort(processes.begin(), processes.end(), 
                  [](const Process& a, const Process& b) { return a.arrivalTime < b.arrivalTime; });
         
         int currentTime = 0;
@@ -62,12 +64,12 @@ public:
     void runSJF(bool preemptive = false) {
         if (!preemptive) {
             // Non-preemptive SJF
-            std::sort(processes.begin(), processes.end(), 
+            sort(processes.begin(), processes.end(), 
                      [](const Process& a, const Process& b) { return a.arrivalTime < b.arrivalTime; });
             
             int currentTime = 0;
-            std::vector<Process> readyQueue;
-            std::vector<Process> completedProcesses;
+            vector<Process> readyQueue;
+            vector<Process> completedProcesses;
             size_t i = 0;
             
             while (i < processes.size() || !readyQueue.empty()) {
@@ -79,7 +81,7 @@ public:
                 
                 if (!readyQueue.empty()) {
                     // Sort ready queue by burst time
-                    std::sort(readyQueue.begin(), readyQueue.end(), 
+                    sort(readyQueue.begin(), readyQueue.end(), 
                              [](const Process& a, const Process& b) { return a.burstTime < b.burstTime; });
                     
                     // Get the process with shortest burst time
@@ -117,14 +119,14 @@ public:
             }
         } else {
             // Preemptive SJF (Shortest Remaining Time First)
-            std::sort(processes.begin(), processes.end(), 
+            sort(processes.begin(), processes.end(), 
                      [](const Process& a, const Process& b) { return a.arrivalTime < b.arrivalTime; });
             
             int currentTime = 0;
-            std::vector<Process> remainingProcesses = processes;
-            std::vector<bool> completed(processes.size(), false);
-            std::vector<int> startTimes(processes.size(), -1);
-            std::vector<int> runningTimes(processes.size(), 0);
+            vector<Process> remainingProcesses = processes;
+            vector<bool> completed(processes.size(), false);
+            vector<int> startTimes(processes.size(), -1);
+            vector<int> runningTimes(processes.size(), 0);
             int completedCount = 0;
             
             // Reset remaining times
@@ -198,41 +200,40 @@ public:
         
         calculateStatistics();
     }
+// Calculate average waiting time and turnaround time
+void calculateStatistics() {
+    double totalWaitingTime = 0;
+    double totalTurnaroundTime = 0;
     
-    // Calculate average waiting time and turnaround time
-    void calculateStatistics() {
-        double totalWaitingTime = 0;
-        double totalTurnaroundTime = 0;
-        
-        for (const auto& p : processes) {
-            totalWaitingTime += p.waitingTime;
-            totalTurnaroundTime += p.turnaroundTime;
-        }
-        
-        avgWaitingTime = totalWaitingTime / processes.size();
-        avgTurnaroundTime = totalTurnaroundTime / processes.size();
+    for (const auto& p : processes) {
+        totalWaitingTime += p.waitingTime;
+        totalTurnaroundTime += p.turnaroundTime;
     }
     
-    // Display results in a simple table format
-    void displayResults() {
-        std::cout << "\nProcess Scheduling Results:\n";
-        std::cout << "+---------+-----------------+------------+----------------+-----------------+\n";
-        std::cout << "| Process | Arrival Time    | Burst Time | Waiting Time   | Turnaround Time |\n";
-        std::cout << "+---------+-----------------+------------+----------------+-----------------+\n";
-        
-        for (const auto& p : processes) {
-            std::cout << "| P" << std::setw(6) << p.pid 
-                      << " | " << std::setw(15) << p.arrivalTime 
-                      << " | " << std::setw(10) << p.burstTime 
-                      << " | " << std::setw(14) << p.waitingTime 
-                      << " | " << std::setw(15) << p.turnaroundTime << " |\n";
-        }
-        
-        std::cout << "+---------+-----------------+------------+----------------+-----------------+\n";
-        std::cout << "Average Waiting Time: " << avgWaitingTime << " time units\n";
-        std::cout << "Average Turnaround Time: " << avgTurnaroundTime << " time units\n";
+    avgWaitingTime = totalWaitingTime / processes.size();
+    avgTurnaroundTime = totalTurnaroundTime / processes.size();
+}
+
+// Display results in a simple table format
+void displayResults() {
+    cout << "\nProcess Scheduling Results:\n";
+    cout << "+---------+-----------------+------------+----------------+-----------------+-----------------+\n";
+    cout << "| Process | Arrival Time    | Burst Time | Waiting Time   | Turnaround Time | Completion Time |\n";
+    cout << "+---------+-----------------+------------+----------------+-----------------+-----------------+\n";
+    
+    for (const auto& p : processes) {
+        cout << "| P" << setw(6) << p.pid 
+              << " | " << setw(15) << p.arrivalTime 
+              << " | " << setw(10) << p.burstTime 
+              << " | " << setw(14) << p.waitingTime 
+              << " | " << setw(15) << p.turnaroundTime 
+              << " | " << setw(15) << p.completionTime << " |\n";
     }
     
+    cout << "+---------+-----------------+------------+----------------+-----------------+-----------------+\n";
+    cout << "Average Waiting Time: " << avgWaitingTime << " cycles\n";
+    cout << "Average Turnaround Time: " << avgTurnaroundTime << " cycles\n";
+}
     // Clear all data
     void clear() {
         processes.clear();
@@ -241,4 +242,4 @@ public:
     }
 };
 
-#endif // SCHEDULER_H
+#endif 
