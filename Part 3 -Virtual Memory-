@@ -1,1 +1,94 @@
+//Constant and Types
+#include <iostream>
+#include <vector>
+#include <stdexcept>
 
+const int PAGE_SIZE = 4096; // 4KB
+const int VIRTUAL_MEMORY_SIZE = 64 * 1024; // 64KB
+const int PHYSICAL_MEMORY_SIZE = 32 * 1024; // 32KB
+
+const int NUM_VIRTUAL_PAGES = VIRTUAL_MEMORY_SIZE / PAGE_SIZE;
+const int NUM_PHYSICAL_FRAMES = PHYSICAL_MEMORY_SIZE / PAGE_SIZE;
+//Table Entry
+struct PageTableEntry {
+    bool valid = false;
+    int frameNumber = -1;
+    bool dirty = false;
+};
+/Table Process
+class PageTable {
+public:
+    std::vector<PageTableEntry> entries;
+
+    PageTable() {
+        entries.resize(NUM_VIRTUAL_PAGES);
+    }
+};
+//Frame Tracker
+class MemoryManager {
+private:
+    std::vector<bool> frameUsed;
+
+public:
+    MemoryManager() {
+        frameUsed.resize(NUM_PHYSICAL_FRAMES, false);
+    }
+
+    int allocateFrame() {
+        for (int i = 0; i < NUM_PHYSICAL_FRAMES; ++i) {
+            if (!frameUsed[i]) {
+                frameUsed[i] = true;
+                return i;
+            }
+        }
+        throw std::runtime_error("Out of physical memory frames");
+    }
+
+    void freeFrame(int frameNumber) {
+        if (frameNumber >= 0 && frameNumber < NUM_PHYSICAL_FRAMES)
+            frameUsed[frameNumber] = false;
+    }
+};
+// Virtual to Physical Translation with Fault Handling
+uint32_t translateAddress(uint32_t virtualAddress, PageTable& pt, MemoryManager& mm) {
+    int pageNumber = virtualAddress / PAGE_SIZE;
+    int offset = virtualAddress % PAGE_SIZE;
+
+    if (pageNumber >= NUM_VIRTUAL_PAGES)
+        throw std::runtime_error("Invalid virtual address");
+
+    PageTableEntry& entry = pt.entries[pageNumber];
+
+    // Page fault handling
+    if (!entry.valid) {
+        std::cout << "[Page Fault] Page " << pageNumber << " not in memory. Handling...\n";
+        int newFrame = mm.allocateFrame();
+        entry.valid = true;
+        entry.frameNumber = newFrame;
+        entry.dirty = false; // clean on load
+        std::cout << "[Page Loaded] Virtual page " << pageNumber << " -> Physical frame " << newFrame << "\n";
+    }
+
+    return entry.frameNumber * PAGE_SIZE + offset;
+}
+
+//main Functions
+int main() {
+    PageTable processPageTable;
+    MemoryManager memManager;
+
+    // Initially no pages are mapped
+    uint32_t testAddresses[] = {5000, 16000, 32000, 1000}; // These will cause faults initially
+
+    for (uint32_t vAddr : testAddresses) {
+        try {
+            uint32_t pAddr = translateAddress(vAddr, processPageTable, memManager);
+            std::cout << "Virtual address " << vAddr
+                      << " maps to physical address " << pAddr << "\n\n";
+        } catch (const std::exception& e) {
+            std::cerr << "Error: " << e.what() << "\n";
+        }
+    }
+
+    return 0;
+}
