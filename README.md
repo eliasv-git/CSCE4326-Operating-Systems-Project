@@ -8,6 +8,7 @@
 - [Test Case Example](#test-case-example)
 - [Process Example](#process-example)
 - [Part 3: Process Scheduling Algorithms](#process-scheduling)
+- [Part 4: Virtual Memory](#virtual-memory)
 
 # Members
   - Elias Villarreal
@@ -61,13 +62,43 @@
       - Completion time
       - Average waiting time
       - Average turnaround time
-- Simulator
+  - Simulator
+      - Sign in
+        - Username: admin
+        - Password: password123
+      - Select Process to simulate
+        - Input the number of process to simulate
+        - Input arrival time of each process
+        - Input burst time of each process
+      - Select Process Scheduling Algorithm
+      - Simulates Scheduling Algorithm
+ 
+  # Virtual Memory
+  - Located under Part 4 -VirtualMemory- Folder
+  - Introduction of virtual & physicial memory 
+    - Pages (Fixed size of 4KB)
+    - Page tables
+  - Uses inverted page table
+  - Displays
+    - Page size
+    - Virtual memory size
+    - Physical memory size
+    - Inverted page table
+    - Meta data
+  - Simulator
     - Sign in
       - Username: admin
-      - Password: password123
-    - Select Process to simulate
-      - Input the number of process to simulate
-      - Input arrival time of each process
-      - Input burst time of each process
-    - Select Process Scheduling Algorithm
-    - Simulates Scheduling Algorithm
+      - Password: password123   
+    - Select 'Virtual Memory Simulaton'
+    - Create a new process
+      - New process ID is created
+      - Input size of the new process in bytes
+      - Pages are assigned to process
+    - Read from memory
+      - Input process ID
+      - Input virtual address to read
+      - Translates virtual address to physical address
+    - Write from memory
+      - Input process ID
+      - Input virtual address to read
+      - Translates virtual address to physical address
