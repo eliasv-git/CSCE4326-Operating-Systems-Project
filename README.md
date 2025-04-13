@@ -77,23 +77,26 @@
   - Located under Part 4 -VirtualMemory- Folder
   - Introduction of virtual & physicial memory 
     - Pages (Fixed size of 4KB)
-    - Page tables
-  - Uses inverted page table
+    - Inverted page tables
+    - Address translation
   - Displays
     - Page size
     - Virtual memory size
     - Physical memory size
     - Inverted page table
-    - Meta data
+    - Metadata
+      - Valid bit
+      - Frame number
+      - Dirty bit  
   - Simulator
     - Sign in
       - Username: admin
       - Password: password123   
     - Select 'Virtual Memory Simulaton'
     - Create a new process
-      - New process ID is created
       - Input size of the new process in bytes
       - Pages are assigned to process
+      - New process ID is created
     - Read from memory
       - Input process ID
       - Input virtual address to read
@@ -102,3 +105,9 @@
       - Input process ID
       - Input virtual address to read
       - Translates virtual address to physical address
+      - Marks pages as dirty
+      - Simulates data modificatio
+    - Display inverted page table
+      -  
+    - Display statistics
+      - 
