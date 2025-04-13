@@ -43,7 +43,7 @@ void runVirtualMemorySimulation() {
         cout << "1. Create new process\n";
         cout << "2. Read from memory\n";
         cout << "3. Write to memory\n";
-        cout << "4. Display page table\n";
+        cout << "4. Display inverted page table\n";
         cout << "5. Display statistics\n";
         cout << "6. Return to main menu\n";
         cout << "Enter choice: ";
