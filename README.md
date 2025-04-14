@@ -108,6 +108,10 @@
       - Marks pages as dirty
       - Simulates data modificatio
     - Display inverted page table
-      -  
+      -  Frame
+      -  If it is valid or invalid
+      -  If the page is dirty or not
     - Display statistics
-      - 
+      -  Page faults
+      -  Table searches
+      -  Physical frames used
