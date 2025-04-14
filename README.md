@@ -120,72 +120,71 @@
          Page size: 4096 bytes
          Virtual memory: 65536 bytes (16 pages)
          Physical memory: 32768 bytes (8 frames)
-      
-        === Virtual Memory Simulation ===
-        1. Create new process
-        2. Read from memory
-        3. Write to memory
-        4. Display page table
-        5. Display statistics
-        6. Return to main menu
-        Enter choice: 1
-        Enter process memory size (bytes): 12000
-        Created process 1 with 3 pages
-        
-        === Virtual Memory Simulation ===
-        1. Create new process
-        2. Read from memory
-        3. Write to memory
-        4. Display page table
-        5. Display statistics
-        6. Return to main menu
-        Enter choice: 2
-        Enter process ID: 1
-        Enter virtual address to read: 5000
-        Translating address 5000 for process 1
-          Page: 1, Offset: 904
-          Searching inverted page table for (PID:1, VPN:1)...
-          [Page Fault] Page 1 not in memory. Handling...
-          [Page Loaded] Virtual page 1 -> Physical frame 0
-          Virtual address 5000 maps to physical address 904
-        
-        === Virtual Memory Simulation ===
-        1. Create new process
-        2. Read from memory
-        3. Write to memory
-        4. Display page table
-        5. Display statistics
-        6. Return to main menu
-        Enter choice: 3
-        Enter process ID: 1
-        Enter virtual address to write: 8500
-        Translating address 8500 for process 1
-          Page: 2, Offset: 308
-          Searching inverted page table for (PID:1, VPN:2)...
-          [Page Fault] Page 2 not in memory. Handling...
-          [Page Loaded] Virtual page 2 -> Physical frame 1
-          Write operation - marking frame as dirty
-          Virtual address 8500 maps to physical address 4404
-        
-        === Virtual Memory Simulation ===
-        1. Create new process
-        2. Read from memory
-        3. Write to memory
-        4. Display page table
-        5. Display statistics
-        6. Return to main menu
-        Enter choice: 4
-        Enter process ID: 1
-        Inverted Page Table:
-        Frame | Valid | Process ID | Virtual Page | Dirty
-        ---------------------------------------------
-        * 0 | Yes | 1 | 1 | No
-        * 1 | Yes | 1 | 2 | Yes
-          2 | No | N/A | N/A | No
-          3 | No | N/A | N/A | No
-          4 | No | N/A | N/A | No
-          5 | No | N/A | N/A | No
-          6 | No | N/A | N/A | No
-          7 | No | N/A | N/A | No
-        * Entries marked with * belong to Process 1
+
+         === Virtual Memory Simulation ===
+         1. Create new process
+         2. Read from memory
+         3. Write to memory
+         4. Display page table
+         5. Display statistics
+         6. Return to main menu
+         Enter choice: 1
+         Enter process memory size (bytes): 12000
+         Created process 1 with 3 pages
           
+         === Virtual Memory Simulation ===
+         1. Create new process
+         2. Read from memory
+         3. Write to memory
+         4. Display page table
+         5. Display statistics
+         6. Return to main menu
+         Enter choice: 2
+         Enter process ID: 1
+         Enter virtual address to read: 5000
+         Translating address 5000 for process 1
+           Page: 1, Offset: 904
+           Searching inverted page table for (PID:1, VPN:1)...
+           [Page Fault] Page 1 not in memory. Handling...
+           [Page Loaded] Virtual page 1 -> Physical frame 0
+           Virtual address 5000 maps to physical address 904
+          
+         === Virtual Memory Simulation ===
+         1. Create new process
+         2. Read from memory
+         3. Write to memory
+         4. Display page table
+         5. Display statistics
+         6. Return to main menu
+         Enter choice: 3
+         Enter process ID: 1
+         Enter virtual address to write: 8500
+         Translating address 8500 for process 1
+           Page: 2, Offset: 308
+           Searching inverted page table for (PID:1, VPN:2)...
+           [Page Fault] Page 2 not in memory. Handling...
+           [Page Loaded] Virtual page 2 -> Physical frame 1
+           Write operation - marking frame as dirty
+           Virtual address 8500 maps to physical address 4404
+          
+         === Virtual Memory Simulation ===
+         1. Create new process
+         2. Read from memory
+         3. Write to memory
+         4. Display page table
+         5. Display statistics
+         6. Return to main menu
+         Enter choice: 4
+         Enter process ID: 1
+         Inverted Page Table:
+          Frame | Valid | Process ID | Virtual Page | Dirty
+          ---------------------------------------------
+          * 0 | Yes | 1 | 1 | No
+          * 1 | Yes | 1 | 2 | Yes
+            2 | No | N/A | N/A | No
+            3 | No | N/A | N/A | No
+            4 | No | N/A | N/A | No
+            5 | No | N/A | N/A | No
+            6 | No | N/A | N/A | No
+            7 | No | N/A | N/A | No
+          * Entries marked with * belong to Process 1
