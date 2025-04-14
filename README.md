@@ -116,11 +116,7 @@
       -  Table searches
       -  Physical frames used
     - Test workloads
-         - Virtual Memory initialized (Inverted Page Table):
-           Page size: 4096 bytes
-           Virtual memory: 65536 bytes (16 pages)
-           Physical memory: 32768 bytes (8 frames)
-           
+      
            === Virtual Memory Simulation ===
            1. Create new process
            2. Read from memory
@@ -188,4 +184,4 @@
              6 | No | N/A | N/A | No
              7 | No | N/A | N/A | No
            * Entries marked with * belong to Process 1
-         
+    
